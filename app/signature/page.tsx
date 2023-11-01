@@ -16,7 +16,6 @@ const isSignUrlState = atom<string | null>({
 });
 
 export default function Signature() {
-  // const signCanvas = useRef() as React.MutableRefObject<any>;
   const signCanvas = useRef<any>(null);
   const [isSigned, setIsSigned] = useRecoilState(isSignState);
   const [isSignUrl, setIsSignUrl] = useRecoilState(isSignUrlState);
@@ -25,7 +24,8 @@ export default function Signature() {
     const savedSignImageUrl = signCanvas.current
       .getTrimmedCanvas()
       .toDataURL("image/png");
-    setIsSignUrl(savedSignImageUrl);
+    if (savedSignImageUrl) setIsSignUrl(savedSignImageUrl);
+    // Download
     const link = document.createElement("a");
     link.href = savedSignImageUrl;
     link.download = "sign_image.png";
@@ -40,10 +40,13 @@ export default function Signature() {
   return (
     <div className="flex min-h-screen flex-col items-center justify-between p-24">
       <h1>Signature Canvas Test</h1>
-      <div className="canvasContainer">
+      <div>
         <ReactSignatureCanvas
           ref={signCanvas}
-          canvasProps={{ className: "sigCanvas canvasStyle" }}
+          canvasProps={{
+            className: "signCanvas canvasStyle",
+          }}
+          clearOnResize={false}
           backgroundColor="rgb(230, 230, 230)"
           onBegin={() => {
             setIsSigned(true);
