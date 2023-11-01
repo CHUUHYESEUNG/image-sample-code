@@ -9,7 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@types/util.promisify": "^1.0.6",
     "browser-image-compression": "^2.0.2",
+    "heic2any": "^0.0.4",
     "next": "14.0.1",
     "react": "^18",
     "react-dom": "^18",
