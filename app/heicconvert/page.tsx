@@ -1,9 +1,17 @@
 "use client";
 
+import { atom, useRecoilState } from "recoil";
 import React, { ChangeEvent } from "react";
 import heic2any from "heic2any";
 
+const fileUrlState = atom<string>({
+  key: "fileUrlState",
+  default: "",
+});
+
 export default function HeicConvert() {
+  const [fileUrl, setFileUrl] = useRecoilState(fileUrlState);
+
   const convertHeicToJpg = async (file: File) => {
     const result = await heic2any({
       blob: file,
@@ -13,8 +21,9 @@ export default function HeicConvert() {
 
     console.log(result);
 
-    const url = URL.createObjectURL(result);
-    //console.log(url);
+    const fileUrl = URL.createObjectURL(result); // blob파일을 URL로 변환
+    console.log(`imageUrl : ${fileUrl}`);
+    setFileUrl(fileUrl);
   };
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -25,9 +34,12 @@ export default function HeicConvert() {
   };
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-between p-24">
-      <h1>HeicConvert</h1>
-      <input type="file" onChange={handleFileChange} />
-    </div>
+    <>
+      <div className="flex flex-col items-center justify-between p-24">
+        <h1>HeicConvert</h1>
+        <input type="file" onChange={handleFileChange} />
+      </div>
+      <div>{fileUrl && <img src={fileUrl} alt="Example" />}</div>
+    </>
   );
 }

@@ -71,10 +71,6 @@ export default function ReactImageFileResizer() {
         id="profile_img_upload"
         onChange={handleFileOnChange}
       />
-      {/* 
-        <label for="profile_img_upload">
-          <img src={camera} alt="camera" />
-        </label> */}
 
       <img className="top_bar_profile_img" src={fileUrl} alt="profile_img" />
     </div>
