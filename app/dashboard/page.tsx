@@ -13,12 +13,12 @@ export default async function Dashboard() {
           <section className="space-y-4">
             <h1 className="text-4xl font-bold"> Image Resizing Sample </h1>
             <div className="flex flex-col space-y-2">
-              <Link
+              {/* <Link
                 className="text-blue-500 hover:underline"
                 href="/reactimagefileresizer"
               >
                 1. React-image-file-resizer
-              </Link>
+              </Link> */}
               <Link
                 className="text-blue-500 hover:underline"
                 href="/browserimagecompression"
