@@ -53,6 +53,12 @@ export default async function Dashboard() {
               1. aws-sdk
             </Link>
           </section>
+          <section className="space-y-4">
+            <h1 className="text-4xl font-bold"> React + S3 </h1>
+            <Link className="text-blue-500 hover:underline" href="/awssdk">
+              2. async-await
+            </Link>
+          </section>
         </main>
       </div>
     </RecoilRoot>
