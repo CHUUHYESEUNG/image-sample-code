@@ -23,13 +23,15 @@ export default function Signature() {
   const save = () => {
     const savedSignImageUrl = signCanvas.current
       .getTrimmedCanvas()
-      .toDataURL("image/png");
-    if (savedSignImageUrl) setIsSignUrl(savedSignImageUrl);
+      .toDataURL("image/png"); // => 컴포넌트, 바로 S3 버튼까지 포함한 clear, save 다 하나로 컴포넌트화
+    // Sign data 리코일 x 버튼 태그
+    if (savedSignImageUrl) setIsSignUrl(savedSignImageUrl); // fix
     // Download
-    const link = document.createElement("a");
-    link.href = savedSignImageUrl;
-    link.download = "sign_image.png";
-    link.click();
+    // const link = document.createElement("a");
+    // link.href = savedSignImageUrl;
+    // link.download = "sign_image.png";
+    // link.click();
+    console.log(`savedSignImageUrl : ${savedSignImageUrl}`);
   };
 
   const clear = () => {
@@ -47,7 +49,7 @@ export default function Signature() {
             className: "signCanvas canvasStyle",
           }}
           clearOnResize={false}
-          backgroundColor="rgb(230, 230, 230)"
+          backgroundColor="rgba(255, 0, 0, 0)"
           onBegin={() => {
             setIsSigned(true);
           }}
