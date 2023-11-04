@@ -55,7 +55,7 @@ export default async function Dashboard() {
           </section>
           <section className="space-y-4">
             <h1 className="text-4xl font-bold"> React + S3 </h1>
-            <Link className="text-blue-500 hover:underline" href="/awssdk">
+            <Link className="text-blue-500 hover:underline" href="/asyncawait">
               2. async-await
             </Link>
           </section>

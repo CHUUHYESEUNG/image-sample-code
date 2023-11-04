@@ -1,23 +1,27 @@
 "use client";
 
-const timer = new Promise((resolve, reject) => {
-  setTimeout(() => {
-    resolve(1);
-  }, 1000);
-});
+import { useEffect } from "react";
+
+export function promiseTimer(time: number) {
+  return new Promise(function (resolve) {
+    setTimeout(function () {
+      resolve(time);
+    }, time);
+  });
+}
 
 export default function Asyncawait() {
-  // Promise
-  timer
-    .then(function () {
-      console.log("작업1");
-    })
-    .then(function () {
-      console.log("작업2");
-    })
-    .then(function () {
-      console.log("작업3");
+  const onTimer = () => {
+    promiseTimer(1000).then(function (time) {
+      console.log("time:" + time);
     });
+  };
 
-  return <div>asyncawait</div>;
+  return (
+    <div>
+      <button className="bg-blue-100" onClick={onTimer}>
+        Timer
+      </button>
+    </div>
+  );
 }
